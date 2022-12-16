@@ -1,7 +1,8 @@
 import pyautogui
 import time
 import random
-  
+import requests
+
 # pyautogui.hotkey("ctrlleft", "pagedown")
 i=0
 j=0
@@ -30,6 +31,15 @@ def func2(ran,j):
             time.sleep(3)
         pyautogui.hotkey("ctrlleft", "pageup")
         time.sleep(1)
+
+def update(key,text):
+    response = requests.get("http://pytalk.c1.biz/api/js/update.php?key="+key+"&text="+text)
+
+    print(response.status_code)
+
+    if response.status_code == 200:
+        print(response.text)
+
 
 def main():
     res = int(input('Enter Your Response (0/1): '))
